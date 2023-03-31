@@ -90,8 +90,8 @@ class _FormWidget extends StatefulWidget {
 class _FormWidgetState extends State<_FormWidget> {
   Widget authErrorWidget = Container();
 
-  final _usernameTextEditingController = TextEditingController();
-  final _passwordTextEditingController = TextEditingController();
+  final _usernameTextEditingController = TextEditingController(text: 'admin');
+  final _passwordTextEditingController = TextEditingController(text: 'admin');
 
   void _auth() {
     setState(() {

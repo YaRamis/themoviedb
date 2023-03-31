@@ -13,6 +13,8 @@ class App extends StatelessWidget {
       title: '',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(backgroundColor: AppColors.themeColor),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: AppColors.themeColor),
       ),
       routes: AppRoutes.routes,
       initialRoute: AppRoutes.auth,
