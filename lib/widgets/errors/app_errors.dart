@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:themoviedb/widgets/theme/app_box_decoration.dart';
+import 'package:themoviedb/widgets/theme/app_colors.dart';
 import 'package:themoviedb/widgets/theme/app_text_style.dart';
 
 abstract class AppErrors {
@@ -7,6 +8,7 @@ abstract class AppErrors {
       AppErrorBox(errorMessage: 'Incorrect password.');
   static const usernameAuthError =
       AppErrorBox(errorMessage: 'We couldn\'t find your username.');
+  static const navigationError = NavigationError();
 }
 
 class AppErrorBox extends StatelessWidget {
@@ -51,5 +53,24 @@ class AppErrorBox extends StatelessWidget {
         ),
       )
     ]);
+  }
+}
+
+class NavigationError extends StatelessWidget {
+  const NavigationError({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: AppColors.themeColor,
+        child: const Center(
+          child: Text(
+            'Navigation error.',
+            style: AppTextStyle.defaultWhiteTextStyle,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/widgets/app_routes.dart';
+import 'package:themoviedb/widgets/errors/app_errors.dart';
 import 'package:themoviedb/widgets/theme/app_colors.dart';
-
-import 'auth/auth_widget.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +14,13 @@ class App extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(backgroundColor: AppColors.themeColor),
       ),
-      home: const AuthWidget(),
+      routes: AppRoutes.routes,
+      initialRoute: AppRoutes.auth,
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute<void>(builder: (context) {
+          return AppErrors.navigationError;
+        });
+      },
     );
   }
 }

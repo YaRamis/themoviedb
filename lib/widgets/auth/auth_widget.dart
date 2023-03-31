@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:themoviedb/widgets/app_routes.dart';
 import 'package:themoviedb/widgets/errors/app_errors.dart';
 import 'package:themoviedb/widgets/theme/app_button_style.dart';
 import 'package:themoviedb/widgets/theme/app_input_decoration.dart';
@@ -102,6 +103,8 @@ class _FormWidgetState extends State<_FormWidget> {
         authErrorWidget = AppErrors.passwordAuthError;
       } else {
         authErrorWidget = Container();
+
+        Navigator.of(context).pushReplacementNamed(AppRoutes.mainScreen);
       }
     });
   }

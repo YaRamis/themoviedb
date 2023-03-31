@@ -23,4 +23,7 @@ dev_dependencies:
 
 flutter:
 
+  assets:
+    - assets/images/Tmdb-312x276-logo.png
+
   uses-material-design: true
