@@ -11,11 +11,10 @@ abstract class AppButtonStyle {
   );
 
   static final ButtonStyle defaultButtonStyle = ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(AppColors.activeColor),
+    // backgroundColor: MaterialStateProperty.all(AppColors.activeColor),
     foregroundColor: MaterialStateProperty.all(Colors.white),
     overlayColor: MaterialStateProperty.all(AppColors.postActiveColor),
-    padding:
-        MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 20)),
+    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
     textStyle: MaterialStateProperty.all(AppTextStyle.defaultButtonTextStyle),
   );
 }

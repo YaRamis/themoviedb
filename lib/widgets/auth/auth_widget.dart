@@ -6,6 +6,8 @@ import 'package:themoviedb/widgets/theme/app_button_style.dart';
 import 'package:themoviedb/widgets/theme/app_input_decoration.dart';
 import 'package:themoviedb/widgets/theme/app_text_style.dart';
 
+import '../theme/gradient_widgets.dart';
+
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
 
@@ -16,15 +18,18 @@ class AuthWidget extends StatefulWidget {
 class _AuthWidgetState extends State<AuthWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Login to your account'),
-      ),
-      body: ListView(
-        children: const [
-          _HeaderWidget(),
-        ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Login to your account'),
+        ),
+        body: ListView(
+          children: const [
+            _HeaderWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -127,6 +132,7 @@ class _FormWidgetState extends State<_FormWidget> {
         ),
         const SizedBox(height: 5),
         TextField(
+          textInputAction: TextInputAction.next,
           controller: _usernameTextEditingController,
           decoration: AppInputDecoration.defaultInputDecoration,
         ),
@@ -139,14 +145,15 @@ class _FormWidgetState extends State<_FormWidget> {
         TextField(
           controller: _passwordTextEditingController,
           obscureText: true,
+          autocorrect: false,
+          enableSuggestions: false,
           decoration: AppInputDecoration.defaultInputDecoration,
         ),
         const SizedBox(height: 25),
         Row(
           children: [
-            TextButton(
+            DefaultGradientTextButton(
               onPressed: _auth,
-              style: AppButtonStyle.defaultButtonStyle,
               child: const Text('Login'),
             ),
             const SizedBox(width: 25),

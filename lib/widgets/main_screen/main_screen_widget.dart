@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/gradient_widgets.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({Key? key}) : super(key: key);
@@ -16,12 +17,26 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     Text('TV shows'),
   ];
 
+  bool _isFirstSelected = true,
+      _isSecondSelected = false,
+      _isThirdSelected = false;
+
   var _selectedItemIndex = 0;
 
   void _onSelectedBarItem(int index) {
     if (_selectedItemIndex != index) {
       setState(() {
         _selectedItemIndex = index;
+
+        _selectedItemIndex == 0
+            ? _isFirstSelected = true
+            : _isFirstSelected = false;
+        _selectedItemIndex == 1
+            ? _isSecondSelected = true
+            : _isSecondSelected = false;
+        _selectedItemIndex == 2
+            ? _isThirdSelected = true
+            : _isThirdSelected = false;
       });
     }
   }
@@ -41,17 +56,26 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         selectedItemColor: AppColors.activeColor,
         unselectedItemColor: AppColors.postActiveColor,
         currentIndex: _selectedItemIndex,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: DefaultGradientIcon(
+              Icons.home,
+              24,
+              isActive: _isFirstSelected,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_movies),
+            icon: DefaultGradientIcon(Icons.local_movies, 24,
+                isActive: _isSecondSelected),
             label: 'Movies',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.slideshow),
+            icon: DefaultGradientIcon(
+              Icons.slideshow,
+              24,
+              isActive: _isThirdSelected,
+            ),
             label: 'TV shows',
           ),
         ],
