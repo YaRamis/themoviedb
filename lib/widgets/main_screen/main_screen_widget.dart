@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/resources/resources.dart';
+import 'package:themoviedb/widgets/movies_list/movies_list_widget.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/gradient_widgets.dart';
@@ -13,7 +15,7 @@ class MainScreenWidget extends StatefulWidget {
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home'),
-    Text('Movies'),
+    MoviesListWidget(),
     Text('TV shows'),
   ];
 
@@ -47,7 +49,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       appBar: AppBar(
         centerTitle: true,
         title: const Image(
-          image: AssetImage('assets/images/Tmdb-312x276-logo.png'),
+          image: AssetImage(AppImages.tmdb312x276Logo),
           height: 37,
         ),
       ),
