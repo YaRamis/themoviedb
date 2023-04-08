@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:themoviedb/resources/resources.dart';
-import 'package:themoviedb/widgets/movies_list/movies_list_widget.dart';
+import 'package:themoviedb/widgets/movies_tab/movies_list_widget.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/gradient_widgets.dart';
@@ -13,10 +13,10 @@ class MainScreenWidget extends StatefulWidget {
 }
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Home'),
-    MoviesListWidget(),
-    Text('TV shows'),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Text('Home'),
+    const MoviesListWidget(),
+    const Text('TV shows'),
   ];
 
   bool _isFirstSelected = true,
@@ -45,43 +45,50 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Image(
-          image: AssetImage(AppImages.tmdb312x276Logo),
-          height: 37,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: const Image(
+            image: AssetImage(AppImages.tmdb312x276Logo),
+            height: 37,
+          ),
         ),
-      ),
-      body: Center(child: _widgetOptions[_selectedItemIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColors.activeColor,
-        unselectedItemColor: AppColors.postActiveColor,
-        currentIndex: _selectedItemIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: DefaultGradientIcon(
-              Icons.home,
-              24,
-              isActive: _isFirstSelected,
+        body: IndexedStack(
+          index: _selectedItemIndex,
+          children: _widgetOptions,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: AppColors.activeColor,
+          unselectedItemColor: AppColors.postActiveColor,
+          currentIndex: _selectedItemIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: DefaultGradientIcon(
+                Icons.home,
+                24,
+                isActive: _isFirstSelected,
+              ),
+              label: 'Home',
             ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: DefaultGradientIcon(Icons.local_movies, 24,
-                isActive: _isSecondSelected),
-            label: 'Movies',
-          ),
-          BottomNavigationBarItem(
-            icon: DefaultGradientIcon(
-              Icons.slideshow,
-              24,
-              isActive: _isThirdSelected,
+            BottomNavigationBarItem(
+              icon: DefaultGradientIcon(Icons.local_movies, 24,
+                  isActive: _isSecondSelected),
+              label: 'Movies',
             ),
-            label: 'TV shows',
-          ),
-        ],
-        onTap: _onSelectedBarItem,
+            BottomNavigationBarItem(
+              icon: DefaultGradientIcon(
+                Icons.slideshow,
+                24,
+                isActive: _isThirdSelected,
+              ),
+              label: 'TV shows',
+            ),
+          ],
+          onTap: _onSelectedBarItem,
+        ),
       ),
     );
   }
